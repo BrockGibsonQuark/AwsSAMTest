@@ -1,0 +1,95 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'test
+
+  Sample SAM Template for test
+
+  '
+Globals:
+  Function:
+    Timeout: 3
+Resources:
+  addUser:
+    Properties:
+      CodeUri: addUser
+      Events:
+        HelloWorld:
+          Properties:
+            Method: post
+            Path: /user
+          Type: Api
+      Handler: app.addUser
+      Runtime: nodejs8.10
+    Type: AWS::Serverless::Function
+  delUser:
+    Properties:
+      CodeUri: delUser
+      Events:
+        HelloWorld:
+          Properties:
+            Method: delete
+            Path: /user
+          Type: Api
+      Handler: app.delUser
+      Runtime: nodejs8.10
+    Type: AWS::Serverless::Function
+  getAllUsers:
+    Properties:
+      CodeUri: getAllUsers
+      Events:
+        HelloWorld:
+          Properties:
+            Method: get
+            Path: /users
+          Type: Api
+      Handler: app.getAll
+      Runtime: nodejs8.10
+    Type: AWS::Serverless::Function
+  getUserById:
+    Properties:
+      CodeUri: getUserById
+      Events:
+        HelloWorld:
+          Properties:
+            Method: get
+            Path: /user
+          Type: Api
+      Handler: app.getUser
+      Runtime: nodejs8.10
+    Type: AWS::Serverless::Function
+  login:
+    Properties:
+      CodeUri: login
+      Events:
+        HelloWorld:
+          Properties:
+            Method: post
+            Path: /login
+          Type: Api
+      Handler: app.login
+      Runtime: nodejs8.10
+    Type: AWS::Serverless::Function
+  logout:
+    Properties:
+      CodeUri: logout
+      Events:
+        HelloWorld:
+          Properties:
+            Method: get
+            Path: /logout
+          Type: Api
+      Handler: app.logout
+      Runtime: nodejs8.10
+    Type: AWS::Serverless::Function
+  updateUser:
+    Properties:
+      CodeUri: updateUser
+      Events:
+        HelloWorld:
+          Properties:
+            Method: put
+            Path: /user
+          Type: Api
+      Handler: app.updateUser
+      Runtime: nodejs8.10
+    Type: AWS::Serverless::Function
+Transform: AWS::Serverless-2016-10-31
