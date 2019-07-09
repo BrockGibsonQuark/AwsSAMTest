@@ -188,6 +188,7 @@ exports.addWorkout = async (event, context) => {
     try {
         if (!result) throw Error("Error verifying auth of user");
         let json = JSON.parse(event.body);
+
         const { Workout } = await connectToDatabase()
         const workout = await Workout.create({
             userID: result.id,
@@ -207,6 +208,37 @@ exports.addWorkout = async (event, context) => {
             statusCode: err.statusCode || 500,
             headers: { 'Content-Type': 'text/plain' },
             body: 'Could not create the workout.'
+        }
+    }
+}
+
+exports.home = async (event, context) => {
+    let result = await auth(event.headers.Authorization);
+    try {
+        if (!result) throw Error("Error verifying auth of user");
+        const { Workout, User } = await connectToDatabase()
+        const user = await User.findOne({
+            where: {
+                id: result.id
+            }
+        });
+        const workouts = await Workout.findAll({
+            where: {
+                userID: result.id
+            }
+        });
+        return {
+            statusCode: 200,
+            body: JSON.stringify({
+                "user": user,
+                "workouts": workouts
+            })
+        }
+    } catch (err) {
+        return {
+            statusCode: err.statusCode || 500,
+            headers: { 'Content-Type': 'text/plain' },
+            body: 'Could not fetch the homepage data'
         }
     }
 } 

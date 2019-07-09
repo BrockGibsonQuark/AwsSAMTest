@@ -68,6 +68,18 @@ Resources:
       Handler: app.getUser
       Runtime: nodejs10.x
     Type: AWS::Serverless::Function
+  homePage:
+    Properties:
+      CodeUri: homePage
+      Events:
+        HelloWorld:
+          Properties:
+            Method: get
+            Path: /home
+          Type: Api
+      Handler: app.home
+      Runtime: nodejs10.x
+    Type: AWS::Serverless::Function
   login:
     Properties:
       CodeUri: login
