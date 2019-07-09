@@ -5,6 +5,7 @@ var bcrypt = require('bcryptjs'); //encrypt passwords and things
 var config = require('./config');
 const connectToDatabase = require('./db'); // initialize connection
 let auth = require('./auth');
+
 // simple Error constructor for handling HTTP error codes
 function HTTPError(statusCode, message) {
     const error = new Error(message)
