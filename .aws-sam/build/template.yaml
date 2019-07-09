@@ -18,7 +18,19 @@ Resources:
             Path: /user
           Type: Api
       Handler: app.addUser
-      Runtime: nodejs8.10
+      Runtime: nodejs10.x
+    Type: AWS::Serverless::Function
+  addWorkout:
+    Properties:
+      CodeUri: addWorkout
+      Events:
+        HelloWorld:
+          Properties:
+            Method: post
+            Path: /session
+          Type: Api
+      Handler: app.addWorkout
+      Runtime: nodejs10.x
     Type: AWS::Serverless::Function
   delUser:
     Properties:
@@ -30,7 +42,7 @@ Resources:
             Path: /user
           Type: Api
       Handler: app.delUser
-      Runtime: nodejs8.10
+      Runtime: nodejs10.x
     Type: AWS::Serverless::Function
   getAllUsers:
     Properties:
@@ -42,7 +54,7 @@ Resources:
             Path: /users
           Type: Api
       Handler: app.getAll
-      Runtime: nodejs8.10
+      Runtime: nodejs10.x
     Type: AWS::Serverless::Function
   getUserById:
     Properties:
@@ -54,7 +66,7 @@ Resources:
             Path: /user
           Type: Api
       Handler: app.getUser
-      Runtime: nodejs8.10
+      Runtime: nodejs10.x
     Type: AWS::Serverless::Function
   login:
     Properties:
@@ -66,7 +78,7 @@ Resources:
             Path: /login
           Type: Api
       Handler: app.login
-      Runtime: nodejs8.10
+      Runtime: nodejs10.x
     Type: AWS::Serverless::Function
   logout:
     Properties:
@@ -78,7 +90,7 @@ Resources:
             Path: /logout
           Type: Api
       Handler: app.logout
-      Runtime: nodejs8.10
+      Runtime: nodejs10.x
     Type: AWS::Serverless::Function
   updateUser:
     Properties:
@@ -90,6 +102,6 @@ Resources:
             Path: /user
           Type: Api
       Handler: app.updateUser
-      Runtime: nodejs8.10
+      Runtime: nodejs10.x
     Type: AWS::Serverless::Function
 Transform: AWS::Serverless-2016-10-31

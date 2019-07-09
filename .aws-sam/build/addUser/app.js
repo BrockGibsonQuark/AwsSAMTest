@@ -181,4 +181,32 @@ exports.logout = async (event, context) => {
             "token": null
         })
     }
+}
+
+exports.addWorkout = async (event, context) => {
+    let result = await auth(event.headers.Authorization);
+    try {
+        if (!result) throw Error("Error verifying auth of user");
+        let json = JSON.parse(event.body);
+        const { Workout } = await connectToDatabase()
+        const workout = await Workout.create({
+            userID: result.id,
+            type: json.type,
+            source: json.source,
+            startTime: json.startTime,
+            endTime: json.endTime
+        })
+        return {
+            statusCode: 200,
+            body: JSON.stringify({
+                "workout": workout
+            })
+        }
+    } catch (err) {
+        return {
+            statusCode: err.statusCode || 500,
+            headers: { 'Content-Type': 'text/plain' },
+            body: 'Could not create the workout.'
+        }
+    }
 } 

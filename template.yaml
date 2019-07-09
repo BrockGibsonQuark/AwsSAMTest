@@ -16,7 +16,7 @@ Resources:
     Properties:
       CodeUri: nodetest/
       Handler: app.getAll
-      Runtime: nodejs8.10
+      Runtime: nodejs10.x
       Events:
         HelloWorld:
           Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
@@ -28,7 +28,7 @@ Resources:
     Properties:
       CodeUri: nodetest/
       Handler: app.getUser
-      Runtime: nodejs8.10
+      Runtime: nodejs10.x
       Events:
         HelloWorld:
           Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
@@ -40,7 +40,7 @@ Resources:
       Properties:
         CodeUri: nodetest/
         Handler: app.addUser
-        Runtime: nodejs8.10
+        Runtime: nodejs10.x
         Events:
           HelloWorld:
             Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
@@ -52,7 +52,7 @@ Resources:
       Properties:
         CodeUri: nodetest/
         Handler: app.delUser
-        Runtime: nodejs8.10
+        Runtime: nodejs10.x
         Events:
           HelloWorld:
             Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
@@ -64,7 +64,7 @@ Resources:
       Properties:
         CodeUri: nodetest/
         Handler: app.updateUser
-        Runtime: nodejs8.10
+        Runtime: nodejs10.x
         Events:
           HelloWorld:
             Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
@@ -76,7 +76,7 @@ Resources:
       Properties:
         CodeUri: nodetest/
         Handler: app.login
-        Runtime: nodejs8.10
+        Runtime: nodejs10.x
         Events:
           HelloWorld:
             Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
@@ -88,10 +88,22 @@ Resources:
       Properties:
         CodeUri: nodetest/
         Handler: app.logout
-        Runtime: nodejs8.10
+        Runtime: nodejs10.x
         Events:
           HelloWorld:
             Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
             Properties:
               Path: /logout
               Method: get
+  addWorkout:
+      Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+      Properties:
+        CodeUri: nodetest/
+        Handler: app.addWorkout
+        Runtime: nodejs10.x
+        Events:
+          HelloWorld:
+            Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+            Properties:
+              Path: /session
+              Method: post

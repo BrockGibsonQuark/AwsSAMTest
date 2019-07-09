@@ -185,6 +185,7 @@ exports.logout = async (event, context) => {
 
 exports.addWorkout = async (event, context) => {
     let result = await auth(event.headers.Authorization);
+    console.log(result);
     try {
         if (!result) throw Error("Error verifying auth of user");
         let json = JSON.parse(event.body);
